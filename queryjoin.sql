@@ -23,3 +23,5 @@ ORDER BY students.surname, students.name;
 -- Query 5: Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti
 
 
+
+
