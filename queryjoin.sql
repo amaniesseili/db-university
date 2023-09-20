@@ -22,6 +22,31 @@ ORDER BY students.surname, students.name;
 
 -- Query 5: Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti
 
+-- Query 6: Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica (id=54)
+SELECT teachers.id, teachers.name, teachers.surname
+FROM teachers
+JOIN course_teacher ON teachers.id = course_teacher.teacher_id
+JOIN courses ON course_teacher.course_id = courses.id
+JOIN degrees ON courses.degree_id = degrees.id
+WHERE degrees.department_id = 54;
+
+-- Query 7: Contare quanti iscritti ci sono stati ogni anno
 
 
+-- Query 8: Contare gli insegnanti che hanno l'ufficio nello stesso edificio
+SELECT office_address, COUNT(*) AS teacher_count
+FROM teachers
+GROUP BY office_address
+HAVING COUNT(*) > 1;
+
+--  Query 9: Calcolare la media dei voti di ogni appello d'esame
+SELECT exam_id, AVG(vote) AS average_vote
+FROM exam_student
+GROUP BY exam_id;
+
+--  Query 10: Contare quanti corsi di laurea ci sono per ogni dipartimento
+SELECT departments.name AS department_name, COUNT(*) AS degree_count
+FROM departments
+LEFT JOIN degrees ON departments.id = degrees.department_id
+GROUP BY department_name;
 
